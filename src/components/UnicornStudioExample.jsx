@@ -1,5 +1,6 @@
 import React from 'react';
 import UnicornScene from 'unicornstudio-react';
+import sceneData from '../../public/Hero-Portfolio.json';
 
 export default function UnicornStudioExample() {
   const handleLoad = () => {
@@ -12,7 +13,7 @@ export default function UnicornStudioExample() {
 
   return (
     <UnicornScene
-      jsonFilePath="/Hero-Portfolio.json"
+      jsonFilePath={sceneData}
       width="100vw"
       height="100vh"
       scale={1}
