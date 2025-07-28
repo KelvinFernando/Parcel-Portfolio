@@ -1,31 +1,37 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
 import UnicornScene from 'unicornstudio-react';
-import sceneData from '../../public/Hero-Portfolio.json';
 
-export default function UnicornStudioExample() {
-  const handleLoad = () => {
-    console.log('Scene loaded successfully!');
-  };
+export default function HeroScene() {
+  const [sceneData, setSceneData] = useState(null);
 
-  const handleError = error => {
-    console.error('Scene loading failed:', error);
-  };
+  useEffect(() => {
+    const sceneUrl = `${window.location.origin}/HeroPortfolio.json`;
+
+    fetch(sceneUrl)
+      .then(async res => {
+        if (!res.ok) {
+          const errorText = await res.text();
+          console.error('❌ Fetch failed. Status:', res.status);
+          console.log('🧪 Raw server response:', errorText);
+          throw new Error('Scene file could not be loaded.');
+        }
+        return res.json();
+      })
+      .then(setSceneData)
+      .catch(err => {
+        console.error('🚨 Error loading Unicorn scene:', err);
+        alert('Scene failed to load.');
+      });
+  }, []);
+
+  if (!sceneData) return <p>Loading...</p>;
 
   return (
     <UnicornScene
-      jsonFilePath={sceneData}
-      width="100vw"
+      scene={sceneData}
+      width="100%"
       height="100vh"
-      scale={1}
-      dpi={1.5}
-      fps={60}
-      altText="Interactive 3D scene"
-      ariaLabel="Animated background scene"
-      className="my-custom-class"
-      lazyLoad={true}
       production={true}
-      onLoad={handleLoad}
-      onError={handleError}
     />
   );
 }
