@@ -1,0 +1,12 @@
+{
+  "extends": "@parcel/config-default",
+  "transformers": {
+    "*.{jpg,jpeg,png,webp,avif}": ["@parcel/transformer-image"],
+    "*.svg": ["@parcel/transformer-raw"],
+    "*.{css,scss}": ["@parcel/transformer-css", "@parcel/transformer-sass"],
+    "*.{html}": ["@parcel/transformer-html"]
+  },
+  "optimizers": {
+    "*.{jpg,jpeg,png,webp,avif}": ["@parcel/optimizer-image"]
+  }
+} 
