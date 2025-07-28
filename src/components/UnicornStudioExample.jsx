@@ -12,7 +12,7 @@ export default function UnicornStudioExample() {
 
   return (
     <UnicornScene
-      projectId="n50wRZRCNWWhQCsXC1kq"
+      jsonFilePath="/Hero-Portfolio.json"
       width="100vw"
       height="100vh"
       scale={1}
